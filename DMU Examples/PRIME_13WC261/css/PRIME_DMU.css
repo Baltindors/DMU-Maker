@@ -1,0 +1,1378 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap');
+
+/* MASTER CSS DIRECTORY 
+
+1. MPT RESET & BASE STYLES
+2. NAVIGATION
+    2A: STANDARD TOP NAVIGATION
+    2B: STANDARD CONTENT NAVIGATION
+3. CONTAINERS
+    3A: FLEX CONTAINERS & CHILDREN
+    3B: WIDTH CONTAINERS
+    3C: TABLE STYLES
+    3D: BORDERS
+4. IMAGES
+5. TYPOGRAPHY
+    5A: MAIN TYPOGRAPHIC ELEMENTS
+    5B: OTHER TYPOGRAPHIC ELEMENTS 
+    5C: ALIGNMENT
+    5D: FOOTNOTES TABLE
+    5E: LISTS
+    5F: BUTTONS AND LINKS
+    5G: ISI TYPOGRAPHIC STYLES
+6. CUSTOM STYLES
+    6A: CUSTOM BRAND COLORS
+    6B: CUSTOM BRAND CONTAINERS
+    6C: CUSTOM BRAND TABLES
+    6D: MEDIA QUERIES FOR REFERENCE
+7. SPACING UTILITIES
+8. TEMPLATE UTILITIES - DO NOT TOUCH
+
+*/
+
+/* 1. MPT RESET */
+    a, abbr, acronym, address, applet, article, aside, audio, b, big, blockquote, body, canvas, caption, center, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, output, p, pre, q, ruby, s, samp, section, small, span, strike, strong, sub, summary, sup, table, tbody, td, tfoot, th, thead, time, tr, tt, u, ul, var, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font: inherit;
+        vertical-align: baseline;
+}
+
+/** BASE STYLES**/
+:root {
+	font-size: 62.5%;
+	/* Setting font to 62.5% makes 1 rem = 1rem. 62.5% of 16 is 10. 1.6rem is the default font size */
+    --whitetext: #FFFFFF;
+	--maintext: #000000;
+	--ctabutton: #358e27;
+	--sectionBG: #FFFFFF;
+    --snapshotBG: #444444;
+    --headerbg: #9F70B0;
+	--flexfiller:#9F70B0;
+
+}
+#DMU {
+	-webkit-text-size-adjust: 100%;
+    font-size: 1.6rem;
+    line-height: 1.2;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    letter-spacing: .5px;
+    color: #583d72;
+}
+
+#DMU .contentWrap {
+	padding: 0px 20px;
+}
+/* adds back margin-bottom to common elements */
+#DMU p, h1, h2, h3, h4, h5, h6, h7, ul, li {
+    margin-bottom: 15px;
+}
+
+#DMU button:focus {
+    outline: none;
+}
+
+
+
+/* 2. NAVIGATION */
+
+/* STACKED NAV CONTAINERS */
+#DMU .nav-wrap {
+    background: var(--headerbg);
+    height: 70px;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#DMU .event-wrap {
+    height: 70px;
+	margin-top: 4px;
+    margin-bottom: 4px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#DMU .date-wrap {
+    background: var(--headerbg);
+	color: #FFFFFF;
+    height: 50px;
+	padding: 30px 0px 30px 0px;
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#DMU .logo-wrap {
+    display: flex;
+    align-self: center;
+    z-index: 10;
+}
+#DMU .links-wrap {
+    width: 100%;
+    max-width: 843px;
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#DMU .img-circles {
+    max-width: 50px;
+}
+@media only screen and (max-width: 1080px) {
+    #DMU .logo-wrap {
+        width: 320px;
+    }
+}
+@media only screen and (max-width: 810px){
+    #DMU .logo-wrap {
+        width: 340px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    #DMU .img-circles {
+        display: none;
+    }
+}
+
+
+/* 2A: STACKED NAV TOP LINKS */
+#DMU .topNav {
+	text-align: center;
+    padding: 5px 0px;
+    width: 100%;
+	background-color: #f9d5d0;
+}
+#DMU .topNavLink {
+	text-decoration: none;
+    font-size: 1.4rem; 
+    line-height: 1.2;
+    color: #583d72;
+    padding: 5px 20px;
+    text-align: center;
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+#DMU .topNavLink:hover {
+	background-color: #f3ada3;
+    color: #FFF;
+    border-radius: 10px 10px 0px 0px;
+}
+/* QUERIES FOR TOP NAVIGATION */
+@media only screen and (max-width: 600px) {
+	#DMU .topNav {
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		border-bottom: 0;
+	}
+	#DMU .topNavLink {
+		margin-bottom: 1px;
+		width: 100%;
+		padding: 5px 0;
+	}
+}
+
+/* 2B: STANDARD CONTENT NAVIGATION */
+#DMU .contentNav {
+	display: flex;
+	justify-content: space-around;
+    align-items: flex-end;
+    padding: 13px 0px 0px 0px;
+    background-color: #f3ada3;
+}
+#DMU .brandLogo {
+    max-width: 300px;
+    align-self: center;
+}
+#DMU .contentNavLink {
+    font-size: 1.6rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+	color: #583d72;
+    padding: 15px 20px 10px;
+    border: 0;
+	background-color: transparent;
+	cursor: pointer;
+    align-self: flex-end;
+    
+}
+#DMU .activeLink,
+#DMU .contentNavLink:hover {
+	background-color: #e6404e; color: var(--whitetext);
+    border-radius: 20px 20px 0px 0px;
+}
+@media only screen and (max-width: 810px) {
+    #DMU .contentNavLink {
+        padding: 15px 10px 10px;
+    }
+}
+@media only screen and (max-width: 600px) {
+	#DMU .contentNav {
+		flex-direction: column;
+		padding: 0;
+	}
+	#DMU .brandLogo {
+        margin: 20px;
+        max-width: 250px;
+    }
+    #DMU .contentNavLink {
+        padding: 5px 10px;
+        width: 100%;
+    }
+    #DMU .activeLink,
+    #DMU .contentNavLink:hover {
+        border-radius: 0;
+    }
+}
+
+
+
+
+/* 3. CONTAINERS */
+
+/* 3A: FLEX CONTAINERS & CHILDREN */
+#DMU .flexRow {
+    display: flex;
+}
+#DMU .justify-around {
+	justify-content: space-around;
+}
+#DMU .justify-between {
+	justify-content: space-between;
+}
+#DMU .justify-evenly {
+	justify-content: space-evenly;
+}
+#DMU .justify-center {
+	justify-content: center;
+}
+#DMU .justify-end {
+	justify-content: flex-end;
+}
+#DMU .justify-start {
+	justify-content: flex-start;
+}
+#DMU .align-baseline {
+	align-items: baseline;
+}
+#DMU .align-center {
+	align-items: center;
+}
+#DMU .align-end {
+	align-items: flex-end;
+}
+#DMU .align-start {
+	align-items: flex-start;
+}
+
+/* 3B: WIDTH CONTAINERS */
+#DMU .w100 {
+    width: 100%;
+}
+#DMU .w95 {
+    width: 95%;
+}
+#DMU .w90 {
+    width: 90%;
+}
+#DMU .w85 {
+    width: 85%;
+}
+#DMU .w80 {
+    width: 80%;
+}
+#DMU .w75 {
+    width: 75%;
+}
+#DMU .w70 {
+    width: 70%;
+}
+#DMU .w65 {
+    width: 65%;
+}
+#DMU .w60 {
+    width: 60%;
+    margin-right: 30px;
+}
+#DMU .w55 {
+    width: 55%;
+}
+#DMU .w50 {
+    width: 50%;
+}
+#DMU .w45 {
+    width: 45%;
+}
+#DMU .w40 {
+    width: 40%;
+}
+#DMU .w35 {
+    width: 35%;
+}
+#DMU .w33 {
+    width: 33%;
+}
+#DMU .w33 + .w33 {
+    margin-left: 30px;
+}
+#DMU .w30 {
+    width: 30%;
+}
+#DMU .w25 {
+    width: 25%;
+}
+#DMU .w20 {
+    width: 20%;
+}
+#DMU .w15 {
+    width: 15%;
+}
+#DMU .w10 {
+    width: 10%;
+}
+#DMU .w5 {
+    width: 5%;
+}
+#DMU .w50 + .w50 {
+    margin-left: 30px;
+}
+/* IPAD LANDSCAPE */
+@media only screen and (max-width: 1080px) {
+    #DMU .flexRow.break-iPad-l {
+    flex-direction: column;
+    }
+}
+/* IPAD PORTRAIT */
+@media only screen and (max-width: 810px) {
+    #DMU .flexRow.break-iPad-p {
+    flex-direction: column;
+    }
+}
+/* MOBILE */
+@media only screen and (max-width: 600px) {
+    #DMU .w100,
+    #DMU .w95,
+    #DMU .w90,
+    #DMU .w85,
+    #DMU .w80,
+    #DMU .w75,
+    #DMU .w70,
+    #DMU .w65,
+    #DMU .w60,
+    #DMU .w55,
+    #DMU .w50,
+    #DMU .w45,
+    #DMU .w40,
+    #DMU .w35,
+    #DMU .w33,
+    #DMU .w30,
+    #DMU .w25,
+    #DMU .w20,
+    #DMU .w15,
+    #DMU .w10,
+    #DMU .w5 {
+        width: 100%;
+        margin: 0;
+    }
+    #DMU .flexRow {
+        flex-direction: column;
+    }
+    #DMU .flexRow.stay {
+        flex-direction: row;
+    }
+    #DMU .w50 + .w50 {
+        margin-left: 0px;
+        margin-top: 10px
+    }
+    #DMU .w33 + .w33 {
+        margin-left: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* 3D: BORDERS */
+#DMU .border-black {
+    border: 1px solid #000000;
+}
+#DMU .borderT-black {
+    border-top: 1px solid #000000;
+}
+#DMU .borderR-black {
+    border-right: 1px solid #000000;
+}
+#DMU .borderB-black {
+    border-bottom: 1px solid #000000;
+}
+#DMU .borderL-black {
+    border-left: 1px solid #000000;
+}
+
+
+
+
+/* 4. IMAGES */
+#DMU img {
+    width: 100%;
+    display: block;
+}
+#DMU .img-flex-icon {
+    flex-shrink: 0;
+    max-width: 30px;
+    margin: -4px 10px 0 0;
+}
+#DMU .img-flex-icon.lg {
+    margin: 0px 10px 0px 0px;
+}
+#DMU .img-flex-ce {
+    flex-shrink: 0;
+    max-width: 150px;
+    margin: 0 20px 0 0;
+}
+#DMU .img-flex-ce2 {
+    flex-shrink: 0;
+    max-width: 70px;
+    margin: 0 60px 0 40px;
+}
+#DMU .img-flex-ce.lg {
+    margin: 0px 10px 0px 0px;
+}
+#DMU .img-moa {
+    max-width: 250px;
+    margin: 15px auto;
+}
+#DMU .img-chart {
+    max-width: 625px;
+    align-self: center;
+}
+#DMU .img-patient {
+    max-width: 300px;
+    align-self: center;
+    z-index: 10;
+}
+#DMU .img-savings {
+    max-width: 600px;
+    align-self: center;
+}
+@media only screen and (max-width: 810px) {
+    #DMU .img-ladies {
+        position: relative;
+        z-index: 1;
+        margin-top: -40px;
+    }
+    #DMU .img-patient {
+        position: relative;
+        top: -12px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    #DMU .img-moa {
+        max-width: 180px;
+    }
+    #DMU .img-chart {
+        margin-bottom: 15px;
+    }
+    #DMU .img-patient {
+        top:0;
+    }
+}
+
+/* MOBILE SWAP */
+#DMU .mobShow {
+    display: none;
+}
+@media only screen and (max-width: 600px) {
+    #DMU .deskShow {
+        display: none;
+    }
+    #DMU .mobShow {
+        display: block;
+    }
+}
+
+
+
+/* 5. TYPOGRAPHY */
+
+/* 5A: MAIN TYPOGRAPHIC ELEMENTS */
+#DMU h1 {
+	font-size: 3.0rem;
+	line-height: 1.2;
+    margin-bottom: 0px;
+}
+#DMU h2 {
+    font-size: 3rem;
+    line-height: 1.2;
+}
+#DMU h3 {
+    font-size: 2.4rem;
+    line-height: 1.2;
+}
+#DMU h4 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+}
+#DMU h5 {
+    font-size: 2.5rem;
+    line-height: ;
+}
+#DMU h6 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+	align-self: center;
+}
+#DMU h7 {
+    font-size: 1.8rem;
+    line-height: 1.2;
+	color: #444444;
+}
+#DMU p {
+    font-size: 1.6rem;
+    line-height: 1.2;
+}
+#DMU .footnote {
+    font-size: 1.4rem;
+    line-height: 1.2;
+}
+/* variable text size larger than h1 */
+#DMU .lgText {
+    font-size: 5rem;
+    line-height: 1.2;
+}
+/* variable text size smaller than footnote */
+#DMU .smText {
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+@media only screen and (max-width: 810px) {
+    #DMU .patient-header h4 {
+        font-size: 1.6rem;
+    }
+}
+@media only screen and (max-width: 600px) {
+    #DMU h1:before,
+    #DMU h1:after {
+        display: none;
+    }
+    #DMU h1 {
+        font-size: 5.4rem;
+    }
+}
+
+
+
+/* 5B: OTHER TYPOGRAPHIC ELEMENTS */
+#DMU b,
+strong {
+	font-weight: 700;
+}
+#DMU i,
+em {
+	font-style: italic;
+}
+#DMU sup {
+	display: inline;
+	vertical-align: super;
+    line-height: 5px;
+	font-size: 60%;
+	position: relative;
+    top: 0px;
+}
+#DMU sub {
+    display: inline;
+    vertical-align: sub;
+    line-height: 5px;
+	font-size: 60%;
+	position: relative;
+    top: 0px;
+}
+#DMU .uppercase {
+    text-transform: uppercase;
+}
+#DMU .capitalize {
+    text-transform: capitalize;
+}
+/* small all uppercase text for times like AM, PM, EST, etc. */
+#DMU .smCaps {
+    font-variant: small-caps;
+}
+#DMU .nowrap {
+    white-space: nowrap;
+}
+/* breaks long URLs that will cause rendering issues on mobile views */
+#DMU .url {
+    -ms-word-break: break-all;
+    word-break: break-word;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+}
+/* styles a hyperlink to look like normal text */
+#DMU .linkReset {
+    text-decoration: none;
+}
+
+
+/* 5C: ALIGNMENT */
+#DMU .va-top {
+    vertical-align: top;
+}
+#DMU .va-bottom {
+    vertical-align: bottom;
+}
+#DMU .va-baseline {
+    vertical-align: baseline;
+}
+#DMU .va-center {
+    vertical-align: center;
+}
+#DMU .a-center {
+    text-align: center;
+}
+#DMU .a-right {
+    text-align: right;
+}
+#DMU .a-left {
+    text-align: left;
+}
+
+
+
+/* 5D: FOOTNOTES TABLE */
+#DMU table.footnotes {
+    border-collapse: collapse;
+    width: auto;
+    text-align: left;
+    font-size: 1.4rem;
+}
+#DMU table.footnotes td:first-of-type {
+    text-align: right;
+}
+#DMU table.footnotes td {
+    padding: 0;
+    margin: 0;
+}
+
+
+
+
+/* 5E: LISTS */
+#DMU ul.bodyList,
+#DMU ul.subList {
+    padding-left: 0px;
+}
+#DMU li {
+    list-style-type: none;
+    position: relative;
+    font-size: 16px;
+    margin: 15px;
+}
+#DMU li:before {
+    position: absolute;
+    top: -10px;
+    left: -15px;
+    color: #444444;
+    content: "•";
+    font-size: 30px;
+}
+#DMU li.dashed:before {
+    content: '-';
+}
+#DMU li.purple-bull:before {
+    color: var(--ovapurple);
+}
+
+
+
+
+/* 5F: BUTTONS AND LINKS */
+#DMU a {
+    text-decoration: none;
+    color: inherit;
+}
+#DMU .buttonWrap {
+    text-align: center;
+}
+#DMU .cta-header {
+    background: rgb(93,61,113);
+    background: linear-gradient(130deg, rgba(93,61,113,1) 0%, rgba(160,62,102,1) 50%, rgba(230,64,78,1) 100%);
+    padding: 30px 40px;
+    color: var(--whitetext);
+    font-weight: 700;
+    width: 70%;
+    margin: -30px auto 0px;
+    border-radius: 10px 30px 0px 30px;
+}
+#DMU .cta {
+    display: inline-block;
+    background-color: var(--ctabutton);
+    color: var(--whitetext);
+    padding: 40px 60px;
+	border-radius: 90px;
+    font-size: 3.3rem;
+	font-weight: bold;
+    margin: -10px auto 0;
+    border: 4px solid #ffffff;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+#DMU .cta:hover {
+    background-color: #FFFFFF;
+    color: var(--ctabutton);
+	border: 4px solid #2e8439;
+}
+/* play button (▶) image for use inside CTA */
+#DMU .img-ctaArrow {
+    display: inline-block;
+    width: 15px;
+    height: 15px
+}
+#DMU .offset-anchor {
+    display: block;
+    position: relative;
+    top: -48px;
+    visibility: hidden;
+}
+@media only screen and (max-width: 810px) {
+    #DMU .cta-header {
+        width: 90%;
+    }
+}
+
+
+/* 5G: ISI TYPOGRAPHIC STYLES */
+#DMU .ISItop {
+	font-size: 1.8rem;
+    line-height: 21px;
+    font-weight: bold;
+    color: #583d72;
+    background-color: #000;
+	padding: 10px 20px;
+	font-family: 'Montserrat', sans-serif;
+	z-index: 100;
+	margin-top: 0px;
+}
+#DMU .ISI {
+	background-color: var(--whitetext);
+	color: #444444;
+	font-size: 2rem;
+    line-height: 1.2;
+	padding: 20px 0;
+	font-family: 'Montserrat', sans-serif;
+}
+#DMU .ISI .ISIheader {
+	color: #007AB7;
+	font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+	font-weight: 700;
+	margin-bottom: 15px;
+}
+#DMU .blackbox {
+    border: 2px solid #583d72;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+#DMU .ISI p {
+	font-size: 1.6rem;
+	line-height: 1.2;
+}
+#DMU .showOnSticky {
+    display: none;
+}
+#DMU .ISI a.ISIlink {
+    color: #583d72;
+    font-weight: 700;
+	text-decoration: underline;
+}
+#DMU .ISI p.signoff{
+	font-size: 1.2rem;
+	line-height: 1.2;
+    margin-bottom: 0;
+}
+/* Merck copyright signoff*/
+#DMU .ISI p.merckSignoff{
+	font-size: 1.2rem;
+	line-height: 1.2;
+    padding-left: 36px;
+}
+#DMU .PrimeLogo {
+	width: 100%;
+	max-width: 100px;
+	margin: 0px 40px 0px 0px;
+}
+#DMU .PrimeLogo + .PrimeLogo {
+	margin-left: 10px;
+}
+#DMU .ISI b {
+	font-weight: bold;
+}
+#DMU .ISI i {
+	font-style: italic;
+}
+#DMU .footer {
+    background-color: var(--headerbg);
+    padding: 20px;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    color: #FFF;
+}
+
+
+
+
+/* 6. CUSTOM STYLES */
+/* ALL NON-TEMPLATED CLASSES GO HERE */
+
+/* 6A: CUSTOM BRAND COLORS */
+#DMU .black {
+    color: #000000;
+}
+#DMU .white {
+    color: #ffffff;
+}
+#DMU .blackBG {
+    background-color: #000000;
+}
+#DMU .whiteBG {
+    background-color: #ffffff;
+}
+#DMU .whitetext {
+    color: var(--whitetext) !important;
+}
+
+
+
+/* 6B: CUSTOM BRAND CONTAINERS */
+#DMU .tabcontent {
+    background-color: var(--whitetext);
+}
+#DMU .gradient-wrap {
+    background: #FFFFFF;
+    padding: 0px 0px 0px 0px;
+    margin: 0px;
+    color: var(--headerbg);
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+#DMU .snapshot {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    background-color: var(--snapshotBG);
+    padding: 40px 40px;
+    margin-left: -50px;
+    border-radius: 50px 0 0 0;
+    color: var(--whitetext);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#DMU .z5 {
+    position: relative;
+    z-index: 5;
+}
+#DMU .mw500 {
+    max-width: 500px;
+}
+#DMU .blueBG {
+    background-color: var(--headerbg);
+    color: var(--whitetext);
+    padding: 20px 40px;
+}
+#DMU .sectionBG {
+    background-color: var(--sectionBG);
+	color: var(--maintext);
+    padding: 20px 40px 0px 40px;
+}
+#DMU .purpleBG {
+    background-color: #583d72;
+    color: var(--whitetext);
+    padding: 20px 40px 0px 40px;
+}
+#DMU .darkBG {
+    background-color: var(--snapshotBG); 
+    padding: 10px 40px;
+    color: #FFF;
+}
+#DMU .patient-header {
+    background-color: var(--ovapeach);
+    padding: 10px 20px 10px 50px;
+    margin: 10px 0px 15px -30px;
+    color: var(--ovapurple);
+    display: flex;
+    justify-content: space-around;
+}
+@media only screen and (max-width: 810px) {
+    #DMU .mw500 {
+        max-width: 100%;
+    }
+    #DMU .snapshot {
+        margin-left: 0;
+        border-radius: 0;
+        padding: 40px 20px;
+    }
+    #DMU .patient-header {
+        flex-direction: column;
+    }
+}
+@media only screen and (max-width: 600px) {
+    #DMU .blueBG,
+    #DMU .sectionBG,
+    #DMU .purpleBG,
+    #DMU .darkBG {
+        padding: 20px;
+    }
+}
+
+
+/* 6C: CUSTOM BRAND TABLES */
+#DMU table.safety-table {
+    border-collapse: collapse;
+    width: 100%;
+    color: var(--ovapurple) !important;
+}
+#DMU thead td {
+    background-color: var(--ovared);
+    color: var(--whitetext);
+    text-align: center;
+    width: 33.333%;
+}
+#DMU table.safety-table td:first-of-type {
+    text-align: left;
+}
+#DMU table.safety-table td {
+    padding: 10px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+#DMU table.safety-table td + td {
+    border-left: 2px solid var(--sectionBG);
+}
+#DMU tr.peach-row {
+    background-color: var(--ovapeach);
+}
+#DMU tr.lt-peach-row {
+    background-color: #f2aca27a;
+}
+
+
+
+/* TABS STYLES*/
+#DMU .tab-wrap {
+    width: 100%;
+    margin: auto;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 5px 15px rgba(0, 0, 0, .1);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, .1);
+}
+#DMU .tab-button-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+    width: 100%;
+}
+#DMU button.tab-button {
+    border: none;
+    padding: 10px;
+    border-radius: 40px 40px 0px 0px;
+    background-color: var(--ovapeach);
+    color: var(--ovapurple);
+    font-size: 2.4rem;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+#DMU button.tab-button:hover,
+#DMU button.tab-button.active {
+    background-color: var(--whitetext);
+}
+#DMU .tab-content-wrap {
+    background-color: var(--whitetext);
+    color: var(--ovapurple);
+    border-radius: 0px 0px 40px 40px;
+}
+#DMU .tab-content {
+    display: none;
+    padding: 20px;
+    border-radius: 0px 0px 40px 40px;
+}
+#DMU .tab-content.active {
+    display: block;
+}
+@media only screen and (max-width: 600px){
+    #DMU button.tab-button {
+        font-size: 1.8rem;
+    }
+    #DMU .tab-button-wrap {
+        grid-column-gap: 2px;
+    }
+}
+
+
+
+/* 6D: MEDIA QUERIES FOR REFERENCE */
+/* PLEASE ONLY USE THESE TO COPY INTO THE APPROPRIATE SECTION WHEN NEEDED - ALL QUERIES SHOULD LIVE WITH THEIR PARENT CODE */
+
+/* Larger iPad Landscape */
+@media only screen and (max-width: 1080px) {
+}
+/* Smaller iPad Landscape */
+@media only screen and (max-width: 1024px) {
+}
+/* Larger iPad Portrait */
+@media only screen and (max-width: 810px) {
+}
+/* Smaller iPad Portrait */
+@media only screen and (max-width: 768px) {
+}
+/* Standard Mobile Break */
+@media only screen and (max-width: 600px) {
+	#DMU h1{font-size: 3.5rem;}
+	#DMU h5{font-size: 2.6rem;}
+}
+/* Larger iPhone Portrait */
+@media only screen and (max-width: 414px) {
+}
+/* Smaller iPhone Portrait */
+@media only screen and (max-width: 375px) {
+}
+
+
+
+
+/* 7. SPACING UTILITIES */
+#DMU .u-m0auto {
+    margin: 0 auto !important;
+}
+#DMU .u-marg5 { 
+    margin: 5px !important;
+}
+#DMU .u-marg10 { 
+    margin: 10px !important;
+}
+#DMU .u-marg15 { 
+    margin: 15px !important;
+}
+#DMU .u-marg20 { 
+    margin: 20px !important;
+}
+#DMU .u-marg30 { 
+    margin: 30px !important;
+}
+#DMU .u-mt0 {
+	margin-top: 0 !important;
+}
+#DMU .u-mt5 {
+	margin-top: 5px !important;
+}
+#DMU .u-mt10 {
+	margin-top: 10px !important;
+}
+#DMU .u-mt15 {
+	margin-top: 15px !important;
+}
+#DMU .u-mt20 {
+	margin-top: 20px !important;
+}
+#DMU .u-mt25 {
+	margin-top: 25px !important;
+}
+#DMU .u-mt30 {
+	margin-top: 30px !important;
+}
+#DMU .mt40 {
+	margin-top: 40px !important;
+}
+#DMU .u-mt50 {
+	margin-top: 50px !important;
+}
+#DMU .u-mb0 {
+    margin-bottom: 0 !important;
+}
+#DMU .u-mb5 {
+	margin-bottom: 5px !important;
+}
+#DMU .u-mb10 {
+	margin-bottom: 10px !important;
+}
+#DMU .u-mb15 {
+	margin-bottom: 15px !important;
+}
+#DMU .u-mb20 {
+	margin-bottom: 20px !important;
+}
+#DMU .u-mb25 {
+	margin-bottom: 25px !important;
+}
+#DMU .u-mb30 {
+	margin-bottom: 30px !important;
+}
+#DMU .u-mb40 {
+	margin-bottom: 40px !important;
+}
+#DMU .u-mb50 {
+	margin-bottom: 50px !important;
+}
+#DMU .u-mtb10 {
+	margin: 10px 0px !important;
+}
+#DMU .u-mtb20 {
+	margin: 20px 0px !important;
+}
+#DMU .u-mtb30 {
+	margin: 30px 0px !important;
+}
+#DMU .plr {
+	padding-left: 20px !important;
+	padding-right: 20px !important;
+}
+#DMU .u-pad10 {
+	padding: 10px !important;
+}
+#DMU .u-pad20 {
+	padding: 20px !important;
+}
+#DMU .pad30 {
+	padding: 30px !important;
+}
+#DMU .u-pt0 {
+    padding-top: 0 !important;
+}
+#DMU .u-pt5 {
+	padding-top: 5px !important;
+}
+#DMU .u-pt10 {
+	padding-top: 10px !important;
+}
+#DMU .u-pt15 {
+	padding-top: 15px !important;
+}
+#DMU .u-pt20 {
+	padding-top: 20px !important;
+}
+#DMU .u-pt25 {
+	padding-top: 25px !important;
+}
+#DMU .u-pt30 {
+	padding-top: 30px !important;
+}
+#DMU .u-pt40 {
+	padding-top: 40px !important;
+}
+#DMU .u-pt50 {
+	padding-top: 50px !important;
+}
+#DMU .u-pr0 {
+	padding-right: 0px !important;
+}
+#DMU .u-pr5 {
+	padding-right: 5px !important;
+}
+#DMU .u-pr10 {
+	padding-right: 10px !important;
+}
+#DMU .u-pr15 {
+	padding-right: 15px !important;
+}
+#DMU .u-pr20 {
+	padding-right: 20px !important;
+}
+#DMU .u-pr25 {
+	padding-right: 25px !important;
+}
+#DMU .u-pr30 {
+	padding-right: 30px !important;
+}
+#DMU .u-pb0 {
+    padding-bottom: 0 !important;
+}
+#DMU .u-pb5 {
+	padding-bottom: 5px !important;
+}
+#DMU .u-pb10 {
+	padding-bottom: 10px !important;
+}
+#DMU .u-pb15 {
+	padding-bottom: 15px !important;
+}
+#DMU .u-pb20 {
+	padding-bottom: 20px !important;
+}
+#DMU .u-pb30 {
+	padding-bottom: 30px !important;
+}
+#DMU .u-pb40 {
+	padding-bottom: 40px !important;
+}
+#DMU .u-pb50 {
+	padding-bottom: 50px !important;
+}
+#DMU .u-pl0 {
+	padding-left: 0px !important;
+}
+#DMU .u-pl5 {
+	padding-left: 5px !important;
+}
+#DMU .u-pl10 {
+	padding-left: 10px !important;
+}
+#DMU .u-pl15 {
+	padding-left: 15px !important;
+}
+#DMU .u-pl20 {
+	padding-left: 20px !important;
+}
+#DMU .u-pl25 {
+	padding-left: 25px !important;
+}
+#DMU .u-pl30 {
+	padding-left: 30px !important;
+}
+
+/* mobile only utlities */
+#DMU .u-mob-mb10 {
+    margin-bottom: 0px;
+}
+@media only screen and (max-width: 600px) {
+    #DMU .u-mob-mb10 {
+        margin-bottom: 10px;
+    }
+}
+
+/* desktop only utlities */
+#DMU .u-desk-mb10 {
+    margin-bottom: 10px;
+}
+@media only screen and (max-width: 600px) {
+    #DMU .u-desk-mb10 {
+        margin-bottom: 0px;
+    }
+}
+
+
+
+
+/* 8. TEMPLATE UTILITIES - DO NOT TOUCH */
+#DMU .flex-container * {
+	box-sizing: border-box;
+}
+/* Layout */
+#DMU .flex-container {
+	display: flex;
+	flex-direction: column;
+	background-color: #f9d6d0;
+}
+#DMU .mobile-flex {
+	display: flex;
+	flex-direction: column;
+}
+#DMU .flex-large {
+	flex: auto;
+	order: 2;
+	background-color: var(--flexfiller);
+}
+#DMU .mobile-scroll {
+	overflow-x: hidden;
+	margin-bottom: 0;
+}
+#DMU .flex-small {
+	flex: 1 0 auto;
+	order: 2;
+}
+#DMU .isi-content {
+	height: 520px;
+	flex: auto;
+	overflow: auto;
+	padding: 10px;
+	background-color: #f9d6d0;
+}
+
+@media only screen and (min-width: 1024px) {
+	#DMU {
+		max-height: initial;
+	}
+	#DMU .flex-container {
+		display: flex;
+		flex-direction: row;
+		height: 100%;
+		max-width: 1100px;
+		margin: 0 auto;
+	}
+	#DMU .flex-large {
+		flex-direction: row;
+		width: auto;
+		max-width: 1100px;
+		margin: auto;
+	}
+	#DMU .flex-small {
+		flex: 1 1 auto;
+		flex: 0 0 350px;
+		height: auto;
+	}
+	#DMU .desktop-flex-item {
+		overflow: auto;
+		flex: 1 1 auto;
+		max-width: 1100px;
+		background-color: var(--flexfiller);
+	}
+	#DMU .mobile-scroll {
+		display: flex;
+		flex: 1 1 auto;
+		background-color: var(--whitetext);
+	}
+	#DMU .navigation-rail {
+		width: 210px;
+		flex: 1 0 auto;
+		padding-left: 1rem;
+		padding-right: 5px;
+	}
+}
+
+@media only screen and (max-width: 850px) {
+	#DMU .flex-large {
+		flex: auto;
+		order: 1;
+	}
+
+	#DMU .flex-small {
+		flex: 1 0 auto;
+		order: 2;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	#DMU .flex-large {
+		flex: auto;
+		order: 1;
+	}
+	#DMU .flex-small {
+		flex: 1 0 auto;
+		order: 2;
+	}
+}
+
+/** STICKY ISI **/
+body.show-isi #clonedIsiSection.flex-small {
+	height: 250px;
+	/*  -webkit-transition: all 1s;
+transition: all 1s;*/
+}
