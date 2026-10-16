@@ -18,6 +18,11 @@ async function blobUrlToDataUrl(url: string): Promise<string> {
   });
 }
 
+function publicAsset(fileName: string): string {
+  const base = import.meta.env.BASE_URL;
+  return `${base}${fileName.replace(/^\//, "")}`;
+}
+
 async function bundledLogo(path: string): Promise<Blob> {
   const response = await fetch(path);
   if (!response.ok) {
@@ -44,8 +49,8 @@ export async function exportDmuZip(activity: DmuActivity, colors: DmuColors): Pr
   const zip = new JSZip();
   zip.file("index.html", html);
   zip.file("css/PRIME_DMU.css", primeDmuCss);
-  zip.file("images/PRIME_White.svg", await bundledLogo("/images/PRIME_White.svg"));
-  zip.file("images/live_webinar.svg", await bundledLogo("/images/live_webinar.svg"));
+  zip.file("images/PRIME_White.svg", await bundledLogo(publicAsset("images/PRIME_White.svg")));
+  zip.file("images/live_webinar.svg", await bundledLogo(publicAsset("images/live_webinar.svg")));
   const blob = await zip.generateAsync({ type: "blob" });
   saveAs(blob, `${activity.activityCode}_DMU.zip`);
 }
