@@ -1,0 +1,15 @@
+---
+description: Activity model, mock catalog, and the Synapse fetch seam
+globs: src/types/**/*.ts,src/services/**/*.ts,src/context/**/*.ts
+alwaysApply: false
+---
+
+# Activity data
+
+Read `docs/activity-data.md` before editing these files. Update that doc if the shape, mock codes, errors, or fetch seam change.
+
+- Keep `DmuActivity` as the app model. Map external payloads onto it in `src/services/`.
+- `overview` is stored as HTML and rendered unescaped. Escape every other text field at render time.
+- Live fetches and faculty photo uploads go through `src/services/synapseApiService.ts` when `usesMockActivityData` is false. Do not add paths, auth, or fields beyond `docs/activity-data.md`.
+- Clone mock activities before returning them. Mock photo replacement stores a `blob:` URL and must revoke the previous `blob:` URL. A successful Synapse upload stores `data.url` and does not create a `blob:` URL.
+- New mock codes belong in the catalog, the sidebar hint, and `docs/activity-data.md`.

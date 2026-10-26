@@ -1,0 +1,14 @@
+---
+description: What DMU Maker is, who uses it, and which docs to read first
+alwaysApply: true
+---
+
+# DMU Maker
+
+Internal tool for PRIME Education's graphic design team. A DMU is the ad unit for a CME activity placed on MedPage Today (sister company). Designers fetch an activity, set colors and faculty photos, preview the unit, and export a zip. The app does not publish the ad.
+
+Activity content comes from Synapse when `VITE_API_BASE_URL` is set and `VITE_USE_MOCK_DATA` is not `true`. Otherwise the data source is `fetchMockActivity` in `src/services/mockDataService.ts`. Do not invent Synapse paths, auth, or payloads beyond `docs/activity-data.md`.
+
+The intended host is Coolify. GitHub Pages is the current static deploy of the mock app.
+
+Read the matching file in `docs/` before changing behavior. `AGENTS.md` maps each area to its doc.

@@ -1,8 +1,17 @@
 import { useState, type FormEvent } from "react";
 import { useDmu } from "../context/dmu-context.ts";
+import { usesMockActivityData } from "../services/activitySource.ts";
 import { exportDmuZip } from "../templates/exportDmuZip.ts";
 
 const HEX_COLOR = /^#[0-9a-fA-F]{6}$/;
+
+export type PreviewViewport = "desktop" | "tablet" | "phone";
+
+const PREVIEW_VIEWPORTS: { id: PreviewViewport; label: string }[] = [
+  { id: "desktop", label: "Desktop" },
+  { id: "tablet", label: "Tablet" },
+  { id: "phone", label: "Phone" },
+];
 
 function ColorField({
   label,
@@ -53,10 +62,19 @@ function ColorField({
   );
 }
 
-export function Sidebar() {
+export function Sidebar({
+  previewViewport,
+  onPreviewViewportChange,
+}: {
+  previewViewport: PreviewViewport;
+  onPreviewViewportChange: (viewport: PreviewViewport) => void;
+}) {
   const {
     activity,
     status,
+    uploadingFacultyIndex,
+    uploadError,
+    uploadErrorIndex,
     primaryColor,
     secondaryColor,
     ctaColor,
@@ -64,16 +82,19 @@ export function Sidebar() {
     setPrimaryColor,
     setSecondaryColor,
     setCtaColor,
-    setFacultyPhoto,
+    replaceFacultyPhoto,
   } = useDmu();
   const [code, setCode] = useState("");
   const [validation, setValidation] = useState<string | null>(null);
   const [isExporting, setIsExporting] = useState(false);
   const [exportError, setExportError] = useState<string | null>(null);
+  const mockData = usesMockActivityData();
+  const uploadInFlight = uploadingFacultyIndex !== null;
+  const searchLocked = status === "loading" || isExporting || uploadInFlight;
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (isExporting) {
+    if (searchLocked) {
       return;
     }
     if (!code.trim()) {
@@ -85,7 +106,7 @@ export function Sidebar() {
   }
 
   async function handleExport() {
-    if (!activity || status === "loading" || isExporting) {
+    if (!activity || status === "loading" || isExporting || uploadInFlight) {
       return;
     }
     setIsExporting(true);
@@ -115,18 +136,43 @@ export function Sidebar() {
             onChange={(event) => setCode(event.target.value)}
             placeholder="13WC2610"
             autoComplete="off"
-            className="mt-1.5 w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-[#388f69] focus:ring-2 focus:ring-[#388f69]/30"
+            disabled={searchLocked}
+            className="mt-1.5 w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-[#388f69] focus:ring-2 focus:ring-[#388f69]/30 disabled:cursor-not-allowed disabled:bg-slate-50"
           />
         </label>
-        <p className="text-xs text-slate-500">13WC2610, 13LV258, 13WC261, or 23LV261</p>
+        <p className="text-xs text-slate-500">
+          {mockData
+            ? "13WC2610, 13LV258, 13WC261, or 23LV261"
+            : "Enter an activity code from Admin. Example: 13WC2610."}
+        </p>
         {validation ? <p className="text-sm text-red-600">{validation}</p> : null}
         <button
           type="submit"
-          disabled={status === "loading" || isExporting}
+          disabled={searchLocked}
           className="w-full rounded-md bg-[#388f69] px-3 py-2 text-sm font-semibold text-white hover:bg-[#2f7858] disabled:cursor-not-allowed disabled:opacity-70"
         >
           {status === "loading" ? "Fetching…" : "Fetch activity"}
         </button>
+        <div className="flex gap-2" role="group" aria-label="Preview size">
+          {PREVIEW_VIEWPORTS.map((option) => {
+            const active = previewViewport === option.id;
+            return (
+              <button
+                key={option.id}
+                type="button"
+                aria-pressed={active}
+                onClick={() => onPreviewViewportChange(option.id)}
+                className={`flex-1 rounded-md px-2 py-2 text-sm font-semibold ${
+                  active
+                    ? "bg-[#388f69] text-white"
+                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                }`}
+              >
+                {option.label}
+              </button>
+            );
+          })}
+        </div>
       </form>
 
       <section className="space-y-4 border-b border-slate-200 px-5 py-5">
@@ -162,19 +208,26 @@ export function Sidebar() {
                   Replace photo
                   <input
                     type="file"
-                    accept="image/*"
+                    accept={mockData ? "image/*" : "image/png,image/jpeg,image/webp"}
                     aria-label={`Replace photo for ${member.name}`}
-                    disabled={isExporting}
+                    disabled={searchLocked}
                     className="mt-1 block w-full text-xs text-slate-600 file:mr-3 file:rounded-md file:border-0 file:bg-slate-100 file:px-2 file:py-1 file:text-xs file:font-medium file:text-slate-700 disabled:cursor-not-allowed disabled:opacity-50"
                     onChange={(event) => {
                       const file = event.target.files?.[0];
-                      if (!file || isExporting) {
+                      event.target.value = "";
+                      if (!file || searchLocked) {
                         return;
                       }
-                      setFacultyPhoto(index, URL.createObjectURL(file));
+                      void replaceFacultyPhoto(index, file);
                     }}
                   />
                 </label>
+                {uploadingFacultyIndex === index ? (
+                  <p className="mt-2 text-xs text-slate-500">Uploading…</p>
+                ) : null}
+                {uploadErrorIndex === index && uploadError ? (
+                  <p className="mt-2 text-sm text-red-600">{uploadError}</p>
+                ) : null}
               </li>
             ))}
           </ul>
@@ -187,7 +240,7 @@ export function Sidebar() {
         <button
           type="button"
           onClick={() => void handleExport()}
-          disabled={!activity || status === "loading" || isExporting}
+          disabled={!activity || status === "loading" || isExporting || uploadInFlight}
           className="w-full rounded-md bg-slate-900 px-3 py-2 text-sm font-semibold text-white hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isExporting ? "Exporting…" : "Export DMU"}

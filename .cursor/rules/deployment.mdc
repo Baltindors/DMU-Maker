@@ -1,0 +1,14 @@
+---
+description: Local scripts, GitHub Pages, and the Coolify hosting target
+globs: package.json,vite.config.ts,.github/**/*.yml,Dockerfile,docker-compose*.yml
+alwaysApply: false
+---
+
+# Deployment
+
+Read `docs/deployment.md` before changing scripts, the Vite base, GitHub Pages, or Coolify files. Update that doc in the same change.
+
+- Production `base` is `./` so `dist/` works on project pages. Logo fetches in the exporter use `import.meta.env.BASE_URL`.
+- GitHub Pages deploys the mock app. The Synapse-backed app is meant for Coolify, where browsers can reach internal endpoints.
+- Do not commit secrets. Document env var names in `docs/deployment.md`. `.env.example` lists those names with empty values. Put values in `.env.local` only.
+- Do not add a Dockerfile or Coolify config until the hosting shape is known. When you do, record service type, port, build, and how Synapse is reached.

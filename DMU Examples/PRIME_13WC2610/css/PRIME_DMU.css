@@ -452,8 +452,22 @@
 #DMU .img-flex-ce.lg {
     margin: 0px 10px 0px 0px;
 }
+#DMU .img-ladies {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: center;
+}
 #DMU .img-moa {
-    max-width: 250px;
+    width: 100%;
+    max-width: 150px;
+    aspect-ratio: 1 / 1;
+    height: auto;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #ffffff;
     margin: 15px auto;
 }
 #DMU .img-chart {
@@ -481,9 +495,6 @@
     }
 }
 @media only screen and (max-width: 600px) {
-    #DMU .img-moa {
-        max-width: 180px;
-    }
     #DMU .img-chart {
         margin-bottom: 15px;
     }
@@ -891,7 +902,8 @@ em {
     z-index: 5;
 }
 #DMU .mw500 {
-    max-width: 500px;
+    flex: 0 0 600px;
+    max-width: 600px;
 }
 #DMU .blueBG {
     background-color: var(--headerbg);
@@ -923,6 +935,8 @@ em {
 }
 @media only screen and (max-width: 810px) {
     #DMU .mw500 {
+        flex: 0 1 auto;
+        width: auto;
         max-width: 100%;
     }
     #DMU .snapshot {

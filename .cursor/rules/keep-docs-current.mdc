@@ -1,0 +1,24 @@
+---
+description: Update docs in the same change when app behavior, data, output, or hosting changes
+alwaysApply: true
+---
+
+# Keep the docs current
+
+`docs/`, `README.md`, and `AGENTS.md` are the self-reference for this app. Finish a change only when those files still match the code.
+
+Update the doc a reader would use to learn the new behavior:
+
+- Audience, DMU purpose, MedPage Today, Coolify, or Synapse intent → `docs/product.md`
+- Screens, state, or fetch flow → `docs/architecture.md`
+- `DmuActivity`, mock codes, or the data client → `docs/activity-data.md`
+- HTML, CSS, colors, faculty layout, or the zip → `docs/dmu-output.md`
+- Scripts, base path, GitHub Pages, or Coolify → `docs/deployment.md`
+- If the summary table in `AGENTS.md` or `README.md` would be wrong, update it too
+
+A refactor that changes no behavior, data shape, output, or operator step does not need a doc edit. If a sentence would become false, fix it in the same change. Do not add a guessed Synapse contract to the docs.
+
+```text
+Bad: add a faculty `credentials` field in src/types/dmu.ts and render it, leave docs/activity-data.md listing the old fields.
+Good: same code change, plus the field row in docs/activity-data.md and the faculty section in docs/dmu-output.md.
+```

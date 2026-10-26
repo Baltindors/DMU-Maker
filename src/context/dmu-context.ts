@@ -5,6 +5,9 @@ export type DmuContextValue = {
   activity: DmuActivity | null;
   status: FetchStatus;
   error: string | null;
+  uploadingFacultyIndex: number | null;
+  uploadError: string | null;
+  uploadErrorIndex: number | null;
   primaryColor: string;
   secondaryColor: string;
   ctaColor: string;
@@ -12,7 +15,7 @@ export type DmuContextValue = {
   setPrimaryColor: (hex: string) => void;
   setSecondaryColor: (hex: string) => void;
   setCtaColor: (hex: string) => void;
-  setFacultyPhoto: (index: number, objectUrl: string) => void;
+  replaceFacultyPhoto: (index: number, file: File) => Promise<void>;
 };
 
 export const DmuContext = createContext<DmuContextValue | null>(null);

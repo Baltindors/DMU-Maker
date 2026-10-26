@@ -1,9 +1,17 @@
 import { useMemo } from "react";
 import { useDmu } from "../context/dmu-context.ts";
+import { usesMockActivityData } from "../services/activitySource.ts";
 import { generateDmuHtml, withPreviewCss } from "../templates/generateDmuHtml.ts";
 import { primeDmuCss } from "../templates/primeDmuCss.ts";
+import type { PreviewViewport } from "./Sidebar.tsx";
 
-export function PreviewPane() {
+const PREVIEW_WIDTH: Record<PreviewViewport, string> = {
+  desktop: "100%",
+  tablet: "768px",
+  phone: "375px",
+};
+
+export function PreviewPane({ previewViewport }: { previewViewport: PreviewViewport }) {
   const { activity, status, error, primaryColor, secondaryColor, ctaColor } = useDmu();
 
   const srcDoc = useMemo(() => {
@@ -29,13 +37,22 @@ export function PreviewPane() {
       <div className="flex min-h-0 flex-1 flex-col">
         {status === "error" && error ? <p className="px-6 pt-4 text-sm text-red-600">{error}</p> : null}
         {activity ? (
-          <iframe title="DMU live preview" srcDoc={srcDoc} className="min-h-0 w-full flex-1 border-0 bg-[#e6e6e6]" />
+          <div className="flex min-h-0 flex-1 justify-center overflow-auto">
+            <iframe
+              title="DMU live preview"
+              srcDoc={srcDoc}
+              className="h-full min-h-0 shrink-0 border-0 bg-[#e6e6e6]"
+              style={{ width: PREVIEW_WIDTH[previewViewport] }}
+            />
+          </div>
         ) : (
           <div className="p-6">
             {status === "loading" ? <p className="text-sm text-slate-600">Fetching activity…</p> : null}
             {status === "idle" ? (
               <p className="text-sm text-slate-600">
-                Enter an activity code such as 13WC2610, 13LV258, 13WC261, or 23LV261.
+                {usesMockActivityData()
+                  ? "Enter an activity code such as 13WC2610, 13LV258, 13WC261, or 23LV261."
+                  : "Enter an activity code from Admin, such as 13WC2610."}
               </p>
             ) : null}
           </div>

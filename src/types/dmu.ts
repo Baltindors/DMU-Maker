@@ -3,6 +3,7 @@ export const DEFAULT_SECONDARY_COLOR = "#444444";
 export const DEFAULT_CTA_COLOR = "#358e27";
 
 export type FacultyMember = {
+  id?: number;
   role: string;
   name: string;
   titles: string;

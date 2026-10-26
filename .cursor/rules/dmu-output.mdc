@@ -1,0 +1,16 @@
+---
+description: Generated DMU HTML, PRIME stylesheet, and zip export
+globs: src/templates/**/*.ts,DMU Examples/**/*.html,DMU Examples/**/*.css
+alwaysApply: false
+---
+
+# DMU output
+
+Read `docs/dmu-output.md` before editing templates or `DMU Examples/`. Update that doc if HTML, CSS variables, the zip layout, or the register URL change.
+
+- Preview inlines CSS with `withPreviewCss`. The zip keeps a real `css/PRIME_DMU.css` file and does not inline it.
+- The shipped stylesheet is `DMU Examples/PRIME_13WC2610/css/PRIME_DMU.css`, imported by `primeDmuCss.ts`. Other example HTML files are references, not inputs.
+- Live-webinar artwork renders only when the activity code contains `WC`.
+- Register links use `utm_source=MPT` and `utm_medium=DMU`. Do not add the sample `onclick` that appends `mh` unless product asks for it.
+- Convert `blob:` faculty photos to data URLs inside the zip. Leave remote artwork, unreplaced photos, and Synapse upload URLs remote.
+- Escape text fields. Leave `overview` as HTML.
