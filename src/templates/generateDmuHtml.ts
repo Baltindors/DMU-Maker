@@ -47,8 +47,9 @@ function webinarMarkup(): string {
 
 function facultyCard(member: FacultyMember, widthClass: string): string {
   const titles = escapeHtml(member.titles).replaceAll("\n", "<br>");
+  const photoClass = member.isReplaced ? "img-moa" : "img-moa img-moa-default";
   return `<div class="${widthClass}">
-                                        <img src="${escapeHtml(member.photo_url)}" class="img-moa" alt="${escapeHtml(member.name)}">
+                                        <img src="${escapeHtml(member.photo_url)}" class="${photoClass}" alt="${escapeHtml(member.name)}">
                                         <p class="a-center">${escapeHtml(member.role)}</p>
                                         <h4 class="a-center"><strong>${escapeHtml(member.name)}</strong></h4>
                                         <p class="a-center">${titles}</p>

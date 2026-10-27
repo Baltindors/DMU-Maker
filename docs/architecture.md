@@ -30,7 +30,7 @@ Describes `src/main.tsx`, `src/App.tsx`, `src/components/Sidebar.tsx`, `src/comp
 
 `fetchActivity` ignores blank input, a fetch that is already in flight, and calls while a photo upload is in flight. `replaceFacultyPhoto` also ignores a fetch that is already in flight. `fetchActivity` increments a request id and drops responses from older requests. The source is `fetchSynapseActivity` or `fetchMockActivity`, chosen by `usesMockActivityData` in `src/services/activitySource.ts`. A new fetch clears the previous activity's `blob:` photo URLs and any upload error.
 
-`replaceFacultyPhoto` takes the selected file. In mock mode it stores an object URL and revokes the previous `blob:` URL. An out-of-range index revokes the new URL and leaves state unchanged. In live mode it checks the file type and size, posts the file, and stores `data.url`. A missing faculty `id` or a rejected file sets `uploadError` and does not change the photo. A failed upload leaves the current photo. Activity search and export stay disabled while `uploadingFacultyIndex` is set.
+`replaceFacultyPhoto` takes the selected file. In mock mode it stores an object URL and revokes the previous `blob:` URL. An out-of-range index revokes the new URL and leaves state unchanged. In live mode it checks the file type and size, posts the file, and stores `data.url`. A successful mock or live replacement sets `isReplaced` on that faculty member. A missing faculty `id` or a rejected file sets `uploadError` and does not change the photo. A failed upload leaves the current photo. A new fetch replaces the activity, so loaded faculty do not have `isReplaced`. Activity search and export stay disabled while `uploadingFacultyIndex` is set.
 
 Colors are not reset when a new activity loads.
 

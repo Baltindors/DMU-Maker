@@ -46,7 +46,7 @@ export function DmuProvider({ children }: { children: ReactNode }) {
 
     revokeBlobUrl(current.faculty[index]?.photo_url);
     const faculty = current.faculty.map((member, memberIndex) =>
-      memberIndex === index ? { ...member, photo_url: photoUrl } : member,
+      memberIndex === index ? { ...member, photo_url: photoUrl, isReplaced: true } : member,
     );
     const next = { ...current, faculty };
     activityRef.current = next;

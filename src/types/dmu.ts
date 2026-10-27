@@ -8,6 +8,7 @@ export type FacultyMember = {
   name: string;
   titles: string;
   photo_url: string;
+  isReplaced?: boolean;
 };
 
 export type DmuActivity = {

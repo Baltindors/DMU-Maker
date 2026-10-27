@@ -197,7 +197,11 @@ export function Sidebar({
                   <img
                     src={member.photo_url}
                     alt=""
-                    className="h-14 w-14 rounded-full bg-slate-100 object-cover"
+                    className={
+                      member.isReplaced
+                        ? "h-14 w-14 shrink-0 rounded-full bg-slate-100 object-cover object-center"
+                        : "h-14 w-14 shrink-0 rounded-full bg-slate-100 object-cover object-[center_15%]"
+                    }
                   />
                   <div className="min-w-0">
                     <p className="truncate text-sm font-medium text-slate-900">{member.name}</p>

@@ -470,6 +470,9 @@
     border: 3px solid #ffffff;
     margin: 15px auto;
 }
+#DMU .img-moa.img-moa-default {
+    object-position: center 15%;
+}
 #DMU .img-chart {
     max-width: 625px;
     align-self: center;
