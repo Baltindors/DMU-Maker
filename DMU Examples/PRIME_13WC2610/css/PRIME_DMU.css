@@ -82,7 +82,7 @@
 #DMU .nav-wrap {
     background: var(--headerbg);
     height: 70px;
-    margin-bottom: 20px;
+    margin-bottom: 0;
 
     display: flex;
     flex-direction: column;
@@ -524,7 +524,9 @@
 #DMU h1 {
 	font-size: 2.8rem;
 	line-height: 1.2;
-    margin-bottom: 0px;
+    margin: 0;
+    padding: 16px 24px;
+    text-align: center;
 }
 #DMU h2 {
     font-size: 3rem;
@@ -763,6 +765,18 @@ em {
         width: 90%;
     }
 }
+@media only screen and (max-width: 600px) {
+    #DMU .cta {
+        align-self: center;
+        width: auto;
+        max-width: 100%;
+        padding: 16px 28px;
+        font-size: 2rem;
+        line-height: 1.2;
+        white-space: nowrap;
+        margin: 0;
+    }
+}
 
 
 /* 5G: ISI TYPOGRAPHIC STYLES */
@@ -843,6 +857,25 @@ em {
     align-items: center;
     color: #FFF;
 }
+@media only screen and (max-width: 600px) {
+    #DMU .footer .PrimeLogo {
+        flex: 0 0 72px;
+        width: 72px;
+        max-width: 72px;
+        min-width: 0;
+        margin: 0 16px 0 0;
+    }
+    #DMU .footer .signoff {
+        flex: 1 1 auto;
+        min-width: 0;
+        margin: 0;
+        font-size: 1.4rem;
+        line-height: 1.35;
+    }
+    #DMU .footer .signoff br {
+        display: none;
+    }
+}
 
 
 
@@ -902,8 +935,8 @@ em {
     z-index: 5;
 }
 #DMU .mw500 {
-    flex: 0 0 600px;
-    max-width: 600px;
+    flex: 0 0 46%;
+    max-width: 46%;
 }
 #DMU .blueBG {
     background-color: var(--headerbg);
